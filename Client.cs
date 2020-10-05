@@ -37,7 +37,7 @@ public class AsynchronousClient
 
     // The response from the remote device.  
     private static String response = String.Empty;
-
+    
 
 
 
@@ -63,11 +63,14 @@ public class AsynchronousClient
             connectDone.WaitOne();
 
             bool flag = true;
+            string commandLine = "";
+            Console.WriteLine("Write your command (insert, update or find) followed by first name, last name and date of birth (YYYY/MM/DD).\n" +
+                "Please separate each operation with a single space. Type a single 'quit' to quit the program.\n" +
+                "E.g.: To insert an entry:\"insert John Doe 1956/01/22\"\n" +
+                "to update an entry start with the ID: \"update 34 John Doe 1966/01/22\"");
+
             while (flag == true)
             {
-                Console.WriteLine("Write your command (insert, update or find) followed by first name, last name and date of Birth.\n" +
-                    "(Please separate each operation with a single space. Type a single 'quit' to quit the program.)");
-                string commandLine = "";
                 commandLine = Console.ReadLine();
                 if (commandLine == "quit")
                 {
@@ -77,6 +80,7 @@ public class AsynchronousClient
                 {
                     Console.WriteLine("Write your command (insert, update or find) followed by first name, last name and date of Birth.\n" +
                     "(Please separate each operation with a single space. Type a single '0' to exit.)");
+                    continue;
                 }
 
                 // Send data to the remote device.  
